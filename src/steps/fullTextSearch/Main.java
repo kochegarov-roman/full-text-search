@@ -28,11 +28,11 @@ public class Main {
             System.out.println("url: "+ url);
             System.out.println("abstract: "+ text+"\n");
         }
-    };
+    }
 
     public static String[] tokensSearch;
-    public static Map<String, Set<Integer>> index = new HashMap<String, Set<Integer>>();
-    public static Map<Integer, Doc> documents = new HashMap<Integer, Doc>();
+    public static Map<String, Set<Integer>> index = new HashMap<>();
+    public static Map<Integer, Doc> documents = new HashMap<>();
 
     public static String[] tokenize(String string){
         return string.split(" ");
@@ -52,8 +52,8 @@ public class Main {
 
     public static String[] stopWordFilter(String[] wordsList){
         String[] stopWord = { "a", "and", "be", "have", "i", "in", "of", "that", "the", "to", ""};
-        Set<String> setWordsList = new HashSet<String>(Arrays.asList(wordsList));
-        Set<String> setStopWord = new HashSet<String>(Arrays.asList(stopWord));
+        Set<String> setWordsList = new HashSet<>(Arrays.asList(wordsList));
+        Set<String> setStopWord = new HashSet<>(Arrays.asList(stopWord));
 
         setWordsList.removeAll(setStopWord);
         setWordsList.removeAll(setStopWord);
@@ -73,7 +73,7 @@ public class Main {
         for (String token: tokens){
             Set<Integer> indexForToken = index.get(token);
             if(indexForToken == null)
-                indexForToken = new HashSet<Integer>();
+                indexForToken = new HashSet<>();
             indexForToken.add(doc.ID);
             index.put(token, indexForToken);
         }
@@ -128,7 +128,6 @@ public class Main {
         System.out.println("Indexing and Search... ");
         System.out.println("Tokens Search: "+ Arrays.toString(tokensSearch));
 
-//        asdfsadf
         int count = 0;
         int countFound = 0;
         XMLInputFactory xif = XMLInputFactory.newInstance();
@@ -193,6 +192,7 @@ public class Main {
         System.out.println("That took " + (endTime - startTime) + " milliseconds");
         System.out.println("Index addition completed. Search will be faster.");
 
+        //noinspection InfiniteLoopStatement
         while (true){
             enterSearchString();
             search();
